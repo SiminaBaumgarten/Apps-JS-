@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with bootstrap</title>
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+    <div class="container-xxl p-5">
+        <div class="form-check form-switch d-flex justify-content-center">
+          <input class="form-check-input " type="checkbox" id="flexSwitchCheckDefault" >
+          <!--<label class="form-check-label" for="flexSwitchCheckDefault"></label>-->
+        </div>
+        
+        <form action = "" class="p-3 form-control-sm needs-validation" >
+          <fieldset id="fieldset" disabled>
+            <div class="row">
+              <div class="col col-12 col-sm-12 col-md-6 col-lg-6 ">
+                <div class="mb-3 ">
+                  <label for="x" class="form-label">Integer X:</label>
+                  <input type="text" class="form-control form-control-sm inputEvent" id="x" aria-describedby="emailHelp" required>
+                  <div class="valid-feedback">Valid</div>
+                  <div class="invalid-feedback">Please fill out this field</div>
+                </div>
+              </div>
+              <div class="col col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="mb-3">
+                  <label for="y" class="form-label">Integer Y:</label>
+                  <input type="text" class="form-control form-control-sm inputEvent" id="y" aria-describedby="emailHelp" required>
+                  <div class="valid-feedback">Valid</div>
+                  <div class="invalid-feedback">Please fill out this field</div>
+              </div>
+              </div>
+    
+            </div>
+            <div class="row">
+              <div class="col" >
+                <div class="mb-3">
+                  <!--<label for="action" class="form-label">Action:</label>-->
+                  <!--<select class="form-control form-control-sm inputEvent" id="action" required aria-label="select example">-->
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="action" value="-select-" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        -select-
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="action" value="sum" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Sum of X and Y
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="action" value="diff" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Absolute difference of X and Y
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="action" value="aritMean" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Arithmetic mean of odd numbers between X and Y
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="action" value="theBigestDivisor" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        (X;Y)
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="action" value="theSmallestMultiple" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        [X;Y]
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="action" value="descendindConcatenationOfNum" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1">
+                        Descending concatenation of numbers between X and Y ending with 8
+                      </label>
+                    </div>
+                    <!--<option value="sum">Sum of X and Y</option>
+                    <option value="diff">Absolute difference of X and Y</option>
+                    <option value="aritMean">Arithmetic mean of odd numbers between X and Y</option>
+                    <option value="theBigestDivisor">(X;Y)</option>
+                    <option value="theSmallestMultiple">[X;Y]</option>
+                    <option value="descendindConcatenationOfNum">Descending concatenation of numbers between X and Y ending with 8</option>
+                  </select>-->
+                  <div class="invalid-feedback">Example invalid select feedback</div>
+                </div>
+              </div>
+              <div class="col">  
+                <div class="mb-3">
+                  <button type="submit" class="btn btn-secondary align-baseline mt-4" id="btn">Start</button>
+                  <button class="btn btn-info align-baseline mt-4" id="modal-btn">Modal</button>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-5" id="result-container">
+              <div class="col col-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="mb-3">
+                  <label for="result" class="form-label">Result:</label>
+                  <input type="text" class="form-control form-control-sm" id="result" aria-describedby="emailHelp">
+                </div>
+              </div>
+            </div>
+            <div class="row mt-5">
+              <div class="modal modal-fullscreen" data-bs-backdrop="static" tabindex="-1" role="dialog" id="modal">
+                <div class=" modal-dialog modal-dialog-centered " role="document">
+                  <div class="modal-content ml-5 mr-5">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Result is:</h5>
+                      <button type="button" class="close" id="close-modal-btn" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p id="modalText"></p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary">Save changes</button>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-modal-btn2">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </fieldset>
+        </form>
+      
+    </div>
+
+
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="app.js"></script>
+</body>
+</html>

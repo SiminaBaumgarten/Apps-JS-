@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+  </head>
+<body class="d-flex flex-column align-items-center ">
+    <h1 class="m-5">Shopping App</h1>
+    <div class="container m-3 p-3" >
+        <form class="input-container row d-flex needs-validation" novalidate action="/action_page.php" method="post">
+            <div class="input-data col ">
+                <div class="input-data row">
+                  <div class="input-product col">
+                    <p>Category:</p>
+                    <select class="form-select" id="selectCategory" name ="selectCateg" onchange="populate(this.id, 'select')" required>
+                        <option selected disabled invalid>-select-</option>
+                        <option value="fruits">Fruits</option>
+                        <option value="vegetables">Vegetables</option>
+                        <option value="others">Others</option>
+                      </select>
+                </div>
+                  <div class="input-product col">
+                      <p>Product:</p>
+                      <select class="form-select" id="select" required>
+                          <option selected disabled invalid value="-select-" required>-select-</option>
+                          <!--<option value="Apples">Apples</option required>
+                          <option value="Bananas">Bananas</option required>
+                          <option value="Carrots">Carrots</option>
+                          <option value="Onions">Onions</option>
+                          <option value="Oranges">Oranges</option>
+                          <option value="Potatoes">Potatoes</option>
+                          <option value="Tomatoes">Tomatoes</option> -->
+                        </select>
+                  </div>
+                  <div class="input-qty col flex-sm-wrap">
+                      <p>Qty(kg):</p>
+                      <input class="form-control" type="number" id="qty-input" required>
+                      <!--<div class="invalid-feedback">Invalid input</div>-->
+                    </div>
+                  <div class="input-price col flex-nowrap">
+                    <p>Price per kg:</p>
+                    <input class="form-control" type="number"  id="price-input" required>
+                </div>
+              </div>
+            </div>
+            <div class="btn-container col align-self-end d-flex justify-content-end">
+                <button type="submit" class='btn btn-success' id="btn">Save</button>
+            </div>
+        </form>
+          
+        <div class="output-container my-5 py-5 invisible" id="outputContainer">
+            <div class="selectAllContainer mb-5 d-flex gap-5 align-items-baseline">
+              <!-- <div class="selectAll">
+                <input type="checkbox" id="checkboxSelectAll" name="checkboxSelectAll">
+                <label for="checkboxSelectAll">Select All</label>
+              </div>
+              <div class="unSelectAll">
+                <input type="checkbox" id="checkboxUnSelectAll" name="checkboxUnSelectAll">
+                <label for="checkboxUnSelectAll">Unselect All</label>
+              </div> -->
+              <div><button type="button" class="btn btn-secondary btn-sm" id="checkboxSelectAll">Select All</button></div>
+              <div><button type="button" class="btn btn-secondary btn-sm" id="checkboxUnSelectAll">Unselect All</button></div>
+              <div><button type="submit" class="btn btn-danger btn-sm" id="removeAllRows">Remove Selected</button></div>
+            </div>
+            <table class="table" id="user-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nr.</th>
+                    <th scope="col">Product</th>
+                    <th scope="col">Qty</th>
+                    <th scope="col">Price per kg</th>
+                    <th scope="col">Line price</th>
+                    <th scope="col"><i class="fa-solid fa-xmark"></i></th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                 <!-- <tr>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                    <td>@twitter</td>
+                  </tr>-->
+                </tbody>
+            </table>
+            
+            <!-- Modal -->
+             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal" id="modalRemoveBtn">Delete</button>
+                  </div>
+                </div>
+              </div>
+            </div> 
+            <div class="result-info-container my-5 py-5">
+              <p id="totalProducts">Total products:&nbsp;<span id="total-product-output"></span></p>
+              <p id="totalQty">Total Qty:&nbsp;<span id="total-qty-output"></span></p>
+              <p id="totalPrice">Total price:&nbsp;<span id="total-price-output"></span></p>
+              <table class="table" id="admin-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Nr.</th>
+                      <th scope="col">Product</th>
+                      <th scope="col">Qty</th>
+                      <th scope="col">Average price</th>
+                      <th scope="col">Total price</th>
+                    </tr>
+                  </thead>
+                  <!--<tbody>
+                    <tr>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                      <td>@mdo</td>
+                    </tr>
+                    <tr>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                      <td>@fat</td>
+                    </tr>
+                    <tr>
+                      <td>@twitter</td>
+                      <td>@twitter</td>
+                      <td>@twitter</td>
+                      <td>@twitter</td>
+                    </tr>
+                  </tbody>-->
+              </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/7d80497c5f.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+</body>
+</html>
