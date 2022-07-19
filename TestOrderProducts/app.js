@@ -1,6 +1,4 @@
 
-//EVENT DELEGATION
-document.body.addEventListener('click', hideSpansRow);
 
 function hideSpansRow(e){
     if(e.target.classList.contains("editBtn")){
@@ -9,8 +7,6 @@ function hideSpansRow(e){
     }
 }
 
-
-document.body.addEventListener('click', hideControllersRow);
 function hideControllersRow(e){
     let product="";
     let qty="";
@@ -34,8 +30,6 @@ function hideControllersRow(e){
 
         comment = controlRow.children[1].children[0].value;
         qty = controlRow.children[2].children[0].value;
-        console.log(product, comment, qty);
-        
         
         spanRow = e.target.parentElement.parentElement.previousElementSibling;
         productSpan = spanRow.children[0].children[0];
@@ -45,18 +39,47 @@ function hideControllersRow(e){
         productSpan.innerHTML = product;
         commentSpan.innerHTML = comment;
         qtySpan.innerHTML = qty;
+        console.log(qtySpan);
 
-        console.log('commentSpan ', comment);
-        console.log('qtySpan ', qtySpan);
-        console.log('qty', qty);
+        if(productSpan.innerHTML === "Please choose something" || commentSpan.innerHTML === ""){
+            //console.log('please choose something');
+            e.target.parentElement.parentElement.style.borderColor = "red";
+        }
 
         e.target.parentElement.parentElement.style.visibility='collapse';
         e.target.parentElement.parentElement.previousElementSibling.style.visibility='visible';
-        
+        printQty();
     }
 }
 
-function getValues(product, comment, qty){
-
+function updateQty(){
+    let result = 0;
+    let qtySpans = document.querySelectorAll('.spanQty');
+    result = Number(qtySpans[0].textContent) + Number(qtySpans[1].textContent) + Number(qtySpans[2].textContent) + Number(qtySpans[3].textContent) + Number(qtySpans[4].textContent);
+    return result;
 }
+
+function printQty(){
+    totalQty = updateQty();
+    console.log(totalQty);
+    totalQtyParag = document.getElementById('totalQty');
+    totalQtyParag.innerHTML = totalQty;
+}
+
+function validate(){
+    let productSpan;
+    let commentSpan;
+    let qtySpan;
+    productSpan = document.querySelectorAll('.spanElem');
+    console.log(productSpan);
+    
+}
+validate();
+
+function run(){
+    document.body.addEventListener('click', hideSpansRow);
+    document.body.addEventListener('click', hideControllersRow);
+}
+
+run();
 
