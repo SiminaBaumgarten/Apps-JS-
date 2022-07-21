@@ -1,6 +1,11 @@
 "use strict";
-export default class myConverter{
+export default
+// export {
+//     myConverter,
+//     Converter
+// }
 
+class myConverter {
 BIN_DICTIONARY = { 
         '0': "0000",
         '1': "0001",

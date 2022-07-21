@@ -1,11 +1,27 @@
 "use strict";
 import myConverter from './converter.js';
+//import Factory from './converterFactory.js';
+
 const FORMAT_HEX = 1;
 const FORMAT_DEC = 2;
 
-const inputs = [1323, 4322, 2341, 134, 2, 3, 4, 45654, 3455, 9839, 748789234, '0x31432', 'AEF', '#34A'];
-inputs.forEach(function(input){
-    function removeHexSignature(input) {
+const inputs = ['#432', 'ZZZ', '0XAF', 'AF', 'AFH', '0x31432', 'AEF', '#34A', 'F', 'K', '10H'];
+//const inputs = ['1323', '4322', '2341', '134', '12', '13', '14', '45654', '3455', '9839', '748789234']
+
+function populateTable(){
+    inputs.forEach(convertEachInput);
+}
+    
+function convertEachInput(input){
+    removeHexSignature(input);
+    containsOnlyNumbers(input);
+    detectInputFormat(input);
+    validateInput(input);
+    convert(input);
+    printResults(input);
+}
+
+function removeHexSignature(input) {
         let result = '';
         let result1 = '';
         let re = /^([0X]|[0X]|[#])/;
@@ -16,14 +32,14 @@ inputs.forEach(function(input){
         result1 = inputWithoutOnePrefix.replace(re2, "");
         result = result1.replace(re3, "");
         return result;
-    }
+}
 
-    function containsOnlyNumbers(input) {
+function containsOnlyNumbers(input) {
         let pattern = /^[0-9]*$/;
         return pattern.test(input);
-    }
+}
 
-    function detectInputFormat(input) {
+function detectInputFormat(input) {
         let result = "";
         if (containsOnlyNumbers(input)) {
             result = FORMAT_DEC;
@@ -32,9 +48,9 @@ inputs.forEach(function(input){
         }
 
         return result;
-    }
+}
 
-    function validateInput(input) {
+function validateInput(input) {
         let result = true;
         let pattern = /^#*([a-f]|[A-F]|[0-9]|[0x]|[0X]|[hH])*$/;
         if (pattern.test(input)) {
@@ -44,9 +60,9 @@ inputs.forEach(function(input){
         }
         //check if input contains non-hexa & non-numeric characters and chars is one of the #, x, h.
         return result;
-    }
+}
 
-    function convert(input) {
+function convert(input) {
         let inputFormat;
         let convertedValue;
         let binaryValue;
@@ -54,10 +70,13 @@ inputs.forEach(function(input){
         let errorMsg;
         inputIsValid= validateInput(input);
         
-        let converter = new myConverter(-1);
+       
+        
         //todo: use base inside convertor
         if (inputIsValid) {
-        
+            //let converter = Factory.create(-1, 1);
+            let converter =  new myConverter(-1);
+            //let converter = new Factory(-1);
             inputFormat = detectInputFormat(input);
             if (inputFormat == FORMAT_HEX) {
                 input = removeHexSignature(input);
@@ -80,13 +99,26 @@ inputs.forEach(function(input){
             inputFormat: inputFormat,
             errorMsg: errorMsg
         }
+        
         return results;
-    }
+}
 
+function generateOptions(CONVERTER_TYPE_MY, CONVERTER_TYPE_CANONIC){
+    let select = document.getElementById('select');
+    const option1 = document.createElement('option');
+    option1.textContent = 'CONVERTER_TYPE_MY';
+    console.log(option1)
+    select.appendChild(option1);
 
-    function printResults(e){
-        e.preventDefault();
+    const option2 = document.createElement('option');
+    option2.textContent = 'CONVERTER_TYPE_CANONIC';
+    console.log(option2)
+    select.appendChild(option2);
 
+}
+
+function printResults(input){
+           
             let convertedResult = convert(input);  
             const list = document.getElementById('list');
             
@@ -95,19 +127,29 @@ inputs.forEach(function(input){
 
             //Insert td                                                                                                      
             row.innerHTML = `                        
-                <td id>${input}</td>
+                <td>${input}</td>
                 <td>${convertedResult.convertedValue}</td>
                 <td>${convertedResult.binaryValue}</td>
             `;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-            list.appendChild(row);                                   
-    }
+            if(convertedResult.errorMsg) {
+                row.innerHTML = `                        
+                <td>${input}</td>
+                <td>${convertedResult.errorMsg}</td>
+                <td>${convertedResult.errorMsg}</td>
+            `;
+                row.style.color = 'red';
+            }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+            list.appendChild(row);    
+            
+            //e.preventDefault();
+}
 
-    function run() {
+function run() {
+        generateOptions();
         const btn = document.getElementById('btn');                                                                                                  
-        btn.addEventListener('click', printResults);
-    }
+        btn.addEventListener('click', populateTable);
+}
 
-    run(); 
+run(); 
 
-})                                                                                     
+                                                                                     

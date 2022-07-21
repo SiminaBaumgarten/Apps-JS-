@@ -1,9 +1,9 @@
-
-class Factory {
-     CONVERTER_TYPE_MY = 1;
-     CONVERTER_TYPE_CANONIC = 2;
+import {myConverter, Converter} from './converter.js';
+export default class Factory {
+    static CONVERTER_TYPE_MY = 1;
+    static CONVERTER_TYPE_CANONIC = 2;
     
-    create = (base, converterType) => {
+    static create(base, converterType) {
 
         if(!converterType) {
             return "unable to make the convert. Please specify a converter type and try again!"
