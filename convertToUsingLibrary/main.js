@@ -11,21 +11,6 @@ const inputs = ['#432', 'ZZZ', '0XAF', 'AF', 'AFH', '0x31432', 'AEF', '#34A', 'F
 //const inputs = ['1323', '4322', '2341', '134', '12', '13', '14', '45654', '3455', '9839', '748789234'];
 
 
-
-function populateTable(){
-    
-    inputs.forEach(convertEachInput);
-}
-    
-function convertEachInput(input){
-    removeHexSignature(input);
-    containsOnlyNumbers(input);
-    detectInputFormat(input);
-    validateInput(input);
-    convert(input);
-    printResults(input);
-}
-
 function removeHexSignature(input) {
         let result = '';
         let result1 = '';
@@ -73,13 +58,15 @@ function convert(input) {
         let binaryValue;
         let inputIsValid;
         let errorMsg;
-        inputIsValid= validateInput(input);
+        inputIsValid = validateInput(input);
         
        
         
         //todo: use base inside convertor
         if (inputIsValid) {
-            let converter = Factory.create(-1, 1);
+            let converterType = getConverterType();
+            let converter = Factory.create(-1, converterType);
+            
             //let converter =  new myConverter(-1);
             //let converter = new Factory(-1);
             inputFormat = detectInputFormat(input);
@@ -123,24 +110,16 @@ function convert(input) {
 
 // }
 
-function changeConverter(){
-    let select = document.getElementById('select');
-    select.addEventListener('change', getConvertorType);
-}
 
-function getConvertorType(){
+function getConverterType(){
     let converterType;
-    if(select.value == 1){
-        converterType = Factory.CONVERTER_TYPE_MY;
-    } else if(select.value == 2) {
-        converterType = Factory.CONVERTER_TYPE_CANONIC;
-    }
-    console.log(converterType);
+    let select = document.getElementById('select');
+    select.addEventListener('change', getConverterType);
+    converterType = select.value;
     return converterType;
 }
 
 function printResults(input){
-           
             let convertedResult = convert(input);  
             const list = document.getElementById('list');
             
@@ -166,13 +145,28 @@ function printResults(input){
             //e.preventDefault();
 }
 
+
+    
+function convertEachInput(input){
+    printResults(input);
+    convert(input);
+    validateInput(input);
+    detectInputFormat(input);
+    containsOnlyNumbers(input);
+    removeHexSignature(input);    
+}
+
+function populateTable(){
+    
+    inputs.forEach(convertEachInput);
+}
+
 function run() {
-        changeConverter();
-        //generateOptions();
+        let convertorType = getConverterType();
         const btn = document.getElementById('btn');                                                                                                  
         btn.addEventListener('click', populateTable);
 }
 
-run(); 
+const startPoint = run(); 
 
                                                                                      
