@@ -1,14 +1,19 @@
 "use strict";
-import myConverter from './converter.js';
-//import Factory from './converterFactory.js';
+//import myConverter from './converter.js';
+import Factory from './converterFactory.js';
 
 const FORMAT_HEX = 1;
 const FORMAT_DEC = 2;
+//const CONVERTER_TYPE_MY = 1;
+//const CONVERTER_TYPE_CANONIC = 2;
 
 const inputs = ['#432', 'ZZZ', '0XAF', 'AF', 'AFH', '0x31432', 'AEF', '#34A', 'F', 'K', '10H'];
-//const inputs = ['1323', '4322', '2341', '134', '12', '13', '14', '45654', '3455', '9839', '748789234']
+//const inputs = ['1323', '4322', '2341', '134', '12', '13', '14', '45654', '3455', '9839', '748789234'];
+
+
 
 function populateTable(){
+    
     inputs.forEach(convertEachInput);
 }
     
@@ -74,8 +79,8 @@ function convert(input) {
         
         //todo: use base inside convertor
         if (inputIsValid) {
-            //let converter = Factory.create(-1, 1);
-            let converter =  new myConverter(-1);
+            let converter = Factory.create(-1, 1);
+            //let converter =  new myConverter(-1);
             //let converter = new Factory(-1);
             inputFormat = detectInputFormat(input);
             if (inputFormat == FORMAT_HEX) {
@@ -103,18 +108,35 @@ function convert(input) {
         return results;
 }
 
-function generateOptions(CONVERTER_TYPE_MY, CONVERTER_TYPE_CANONIC){
+// function generateOptions(CONVERTER_TYPE_MY, CONVERTER_TYPE_CANONIC){
+//     let select = document.getElementById('select');
+//     console.log(select.value);
+//     const option1 = document.createElement('option');
+//     option1.textContent = 'CONVERTER_TYPE_MY';
+//     console.log(option1)
+//     select.appendChild(option1);
+
+//     const option2 = document.createElement('option');
+//     option2.textContent = 'CONVERTER_TYPE_CANONIC';
+//     console.log(option2)
+//     select.appendChild(option2);
+
+// }
+
+function changeConverter(){
     let select = document.getElementById('select');
-    const option1 = document.createElement('option');
-    option1.textContent = 'CONVERTER_TYPE_MY';
-    console.log(option1)
-    select.appendChild(option1);
+    select.addEventListener('change', getConvertorType);
+}
 
-    const option2 = document.createElement('option');
-    option2.textContent = 'CONVERTER_TYPE_CANONIC';
-    console.log(option2)
-    select.appendChild(option2);
-
+function getConvertorType(){
+    let converterType;
+    if(select.value == 1){
+        converterType = Factory.CONVERTER_TYPE_MY;
+    } else if(select.value == 2) {
+        converterType = Factory.CONVERTER_TYPE_CANONIC;
+    }
+    console.log(converterType);
+    return converterType;
 }
 
 function printResults(input){
@@ -145,7 +167,8 @@ function printResults(input){
 }
 
 function run() {
-        generateOptions();
+        changeConverter();
+        //generateOptions();
         const btn = document.getElementById('btn');                                                                                                  
         btn.addEventListener('click', populateTable);
 }

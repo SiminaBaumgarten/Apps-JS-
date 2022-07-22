@@ -1,9 +1,9 @@
 "use strict";
-export default
-// export {
-//     myConverter,
-//     Converter
-// }
+//export default
+export {
+    myConverter,
+    Converter
+}
 
 class myConverter {
 BIN_DICTIONARY = { 
