@@ -4,8 +4,6 @@ import Factory from './converterFactory.js';
 
 const FORMAT_HEX = 1;
 const FORMAT_DEC = 2;
-//const CONVERTER_TYPE_MY = 1;
-//const CONVERTER_TYPE_CANONIC = 2;
 
 const inputs = ['#432', 'ZZZ', '0XAF', 'AF', 'AFH', '0x31432', 'AEF', '#34A', 'F', 'K', '10H'];
 //const inputs = ['1323', '4322', '2341', '134', '12', '13', '14', '45654', '3455', '9839', '748789234'];
@@ -148,16 +146,10 @@ function printResults(input){
 
     
 function convertEachInput(input){
-    printResults(input);
-    convert(input);
-    validateInput(input);
-    detectInputFormat(input);
-    containsOnlyNumbers(input);
-    removeHexSignature(input);    
+    printResults(input); 
 }
 
 function populateTable(){
-    
     inputs.forEach(convertEachInput);
 }
 
