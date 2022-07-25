@@ -1,3 +1,20 @@
+//const filteredTable = rows.filter( )
+function search(){
+    let searchBtn = document.getElementById("searchBtn");
+    searchBtn.addEventListener("click", filter);
+}
+
+function filter(){
+    let arr;
+    spanTxt = document.querySelectorAll(".spanTxt");
+    arr = Array.from(spanTxt);
+    console.log(arr);
+    filterEl = document.getElementById("filterEl").value;
+    arr.forEach(element => console.log((element.textContent).includes(filterEl)));
+
+}
+
+const filteredElements = search();
 
 
 function hideSpansRow(e){
@@ -41,16 +58,20 @@ function hideControllersRow(e){
         qtySpan.innerHTML = qty;
         console.log(qtySpan);
 
-        if(productSpan.innerHTML === "Please choose something" || commentSpan.innerHTML === ""){
-            //console.log('please choose something');
-            e.target.parentElement.parentElement.style.borderColor = "red";
+        
+        
+        if(productSpan.innerHTML === "Please choose something" || commentSpan.innerHTML === "" || qtySpan.innerHTML === ""){
+            e.target.parentElement.parentElement.style.borderColor = "red"; 
         }
-
+        
+        
         e.target.parentElement.parentElement.style.visibility='collapse';
         e.target.parentElement.parentElement.previousElementSibling.style.visibility='visible';
+        
         printQty();
     }
 }
+
 
 function updateQty(){
     let result = 0;
@@ -66,15 +87,7 @@ function printQty(){
     totalQtyParag.innerHTML = totalQty;
 }
 
-function validate(){
-    let productSpan;
-    let commentSpan;
-    let qtySpan;
-    productSpan = document.querySelectorAll('.spanElem');
-    console.log(productSpan);
-    
-}
-validate();
+
 
 function run(){
     document.body.addEventListener('click', hideSpansRow);

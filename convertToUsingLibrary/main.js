@@ -151,14 +151,44 @@ function convertEachInput(input){
 
 function populateTable(){
     inputs.forEach(convertEachInput);
+   
 }
 
 function run() {
-        let convertorType = getConverterType();
         const btn = document.getElementById('btn');                                                                                                  
-        btn.addEventListener('click', populateTable);
+        btn.addEventListener('click', populateTable);     
 }
 
 const startPoint = run(); 
 
-                                                                                     
+
+function test() {
+    for(let i =0 ; i < 100000; i++) {
+         
+    }
+ }
+ 
+ console.time();
+ 
+ test();
+ 
+ console.timeEnd();
+
+
+//  console.time('Using MyConverter');
+//  for(let i = 200000 ; i >= 0; --i) {
+     
+// }
+//  console.timeEnd('Using MyConverter');
+
+
+
+// function performanceSensitiveFunc() {
+//     const start = performance.now();
+    
+//     const duration = performance.now() - start;
+//     console.log(duration);
+// } 
+
+//const performanceVar = performanceSensitiveFunc();
+
