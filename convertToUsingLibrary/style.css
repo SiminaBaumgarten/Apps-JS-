@@ -2,33 +2,41 @@
     position: relative;
 }
 
-.navbar{
-    position: absolute;
-    left: 0px;
-}
 #page-container{
     background-color: #f6f6f6;
-    margin-top: 100px;
+    /* margin-top: 100px; */
     max-width: 80%;
 
 }
 
-.nav-item{
-    /*background-color: white;*/
+ul {
+   position: relative;
+   padding: 0;
+   margin:0;
+    
 }
 
+.navbar{
+    display: flex;
+    align-self: flex-start;
+    padding-left: 115px;
+    gap: 20px;
+    padding: 20;
+    margin:0;
+}
 .nav-item {
-    /*border: 3px solid #73AD21;*/
-    /*transform: perspective(.5em) rotateX(5deg);*/
-    /*transform: rotate(2deg);*/
+        
+        width: 70px;
+        height: 50px;
+        background: grey;
+        transform: perspective(10px) rotateX(1deg);
+        margin-right: 5px;
+        color: whitesmoke;
    
 }
 
-
-.nav-item:first-child {
-    border-bottom-left-radius: 30px 10px;
-    border-top-right-radius: 30px 10px;
+a {
+    text-align: center;
+    color: white;
 }
-a:visited {
-    color: green;
-  }
+

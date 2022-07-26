@@ -51,8 +51,11 @@ function validateInput(input) {
 }
 
 function convert(input) {
-    let t1 = console.time('Execution Time');
-    for (let i = 0; i < 100000000; i++);
+    //let t1 = console.time('Execution Time');
+    const start = Date.now();
+  
+    for (let i = 0; i < 1000000; i++);
+    
     //for(let i = 200000; i>=0; --i);
         let inputFormat;
         let convertedValue;
@@ -92,7 +95,10 @@ function convert(input) {
             inputFormat: inputFormat,
             errorMsg: errorMsg
         };
-        let t2 = console.timeEnd('Execution Time');
+        //let t2 = console.timeEnd('Execution Time');
+        
+        const duration = Date.now() - start;
+        console.log(duration);
         //let executionTime = t2-t1;
         //console.log(executionTime);
         return results;
