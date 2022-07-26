@@ -51,14 +51,15 @@ function validateInput(input) {
 }
 
 function convert(input) {
+    let t1 = console.time('Execution Time');
+    for (let i = 0; i < 100000000; i++);
+    //for(let i = 200000; i>=0; --i);
         let inputFormat;
         let convertedValue;
         let binaryValue;
         let inputIsValid;
         let errorMsg;
         inputIsValid = validateInput(input);
-        
-       
         
         //todo: use base inside convertor
         if (inputIsValid) {
@@ -67,6 +68,8 @@ function convert(input) {
             
             //let converter =  new myConverter(-1);
             //let converter = new Factory(-1);
+           
+            
             inputFormat = detectInputFormat(input);
             if (inputFormat == FORMAT_HEX) {
                 input = removeHexSignature(input);
@@ -88,10 +91,14 @@ function convert(input) {
             binaryValue: binaryValue,
             inputFormat: inputFormat,
             errorMsg: errorMsg
-        }
-        
+        };
+        let t2 = console.timeEnd('Execution Time');
+        //let executionTime = t2-t1;
+        //console.log(executionTime);
         return results;
 }
+
+
 
 // function generateOptions(CONVERTER_TYPE_MY, CONVERTER_TYPE_CANONIC){
 //     let select = document.getElementById('select');
@@ -160,35 +167,4 @@ function run() {
 }
 
 const startPoint = run(); 
-
-
-function test() {
-    for(let i =0 ; i < 100000; i++) {
-         
-    }
- }
- 
- console.time();
- 
- test();
- 
- console.timeEnd();
-
-
-//  console.time('Using MyConverter');
-//  for(let i = 200000 ; i >= 0; --i) {
-     
-// }
-//  console.timeEnd('Using MyConverter');
-
-
-
-// function performanceSensitiveFunc() {
-//     const start = performance.now();
-    
-//     const duration = performance.now() - start;
-//     console.log(duration);
-// } 
-
-//const performanceVar = performanceSensitiveFunc();
 
