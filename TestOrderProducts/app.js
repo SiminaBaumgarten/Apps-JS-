@@ -1,3 +1,9 @@
+const filteredElements = search();
+
+function search(){
+    let searchBtn = document.getElementById("searchBtn");
+    searchBtn.addEventListener("click", filter);
+}
 
 
 function filter(){ 
@@ -13,18 +19,7 @@ function filter(){
             arr[i].style.visibility = "visible";
         }
     }
-    printQty();
-    
 }
-
-function search(){
-    let searchBtn = document.getElementById("searchBtn");
-    searchBtn.addEventListener("click", filter);
-}
-
-const filteredElements = search();
-
-
 
 function hideSpansRow(e){
     if(e.target.classList.contains("editBtn")){
@@ -83,7 +78,6 @@ function updateQty(){
     let result = 0;
     let arr = [];
     let qtySpans = document.querySelectorAll('.spanQty');
-    let qtyVisibleSpans = document.
     arr = Array.from(qtySpans);
 
     for(let i = 0; i < arr.length; i++){
