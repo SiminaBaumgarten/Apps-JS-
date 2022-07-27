@@ -1,20 +1,29 @@
-//const filteredTable = rows.filter( )
+
+
+function filter(){ 
+    let arr;
+    inputTxt = document.getElementById("filterEl").value;
+    minTxt = document.getElementById("minEl").value;
+    maxTxt = document.getElementById("maxEl").value;
+    let spanRows = document.getElementsByClassName("spanRow");
+    arr = Array.prototype.slice.call(spanRows);
+    for (let i = 0; i < arr.length; i++){
+        arr[i].style.visibility = "collapse";
+        if(arr[i].textContent.includes(inputTxt) && (Number(spanRows[i].children[2].textContent>=minTxt)) && (Number(spanRows[i].children[2].textContent<=maxTxt))){
+            arr[i].style.visibility = "visible";
+        }
+    }
+    printQty();
+    
+}
+
 function search(){
     let searchBtn = document.getElementById("searchBtn");
     searchBtn.addEventListener("click", filter);
 }
 
-function filter(){
-    let arr;
-    spanTxt = document.querySelectorAll(".spanTxt");
-    arr = Array.from(spanTxt);
-    console.log(arr);
-    filterEl = document.getElementById("filterEl").value;
-    arr.forEach(element => console.log((element.textContent).includes(filterEl)));
-
-}
-
 const filteredElements = search();
+
 
 
 function hideSpansRow(e){
@@ -55,10 +64,7 @@ function hideControllersRow(e){
 
         productSpan.innerHTML = product;
         commentSpan.innerHTML = comment;
-        qtySpan.innerHTML = qty;
-        console.log(qtySpan);
-
-        
+        qtySpan.innerHTML = qty; 
         
         if(productSpan.innerHTML === "Please choose something" || commentSpan.innerHTML === "" || qtySpan.innerHTML === ""){
             e.target.parentElement.parentElement.style.borderColor = "red"; 
@@ -75,14 +81,23 @@ function hideControllersRow(e){
 
 function updateQty(){
     let result = 0;
+    let arr = [];
     let qtySpans = document.querySelectorAll('.spanQty');
-    result = Number(qtySpans[0].textContent) + Number(qtySpans[1].textContent) + Number(qtySpans[2].textContent) + Number(qtySpans[3].textContent) + Number(qtySpans[4].textContent);
+    let qtyVisibleSpans = document.
+    arr = Array.from(qtySpans);
+
+    for(let i = 0; i < arr.length; i++){
+        //console.log(arr[i].parentElement.parentElement.style.visibility)
+      
+        result += Number(arr[i].textContent);
+         
+    }
+    //result = Number(qtySpans[0].textContent) + Number(qtySpans[1].textContent) + Number(qtySpans[2].textContent) + Number(qtySpans[3].textContent) + Number(qtySpans[4].textContent);
     return result;
 }
 
 function printQty(){
     totalQty = updateQty();
-    console.log(totalQty);
     totalQtyParag = document.getElementById('totalQty');
     totalQtyParag.innerHTML = totalQty;
 }
@@ -94,5 +109,5 @@ function run(){
     document.body.addEventListener('click', hideControllersRow);
 }
 
-run();
+const startPoint = run();
 
