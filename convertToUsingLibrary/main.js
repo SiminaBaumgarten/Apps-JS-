@@ -67,20 +67,41 @@ function convert(input) {
         //todo: use base inside convertor
         if (inputIsValid) {
             let converterType = getConverterType();
-            let converter = Factory.create(-1, converterType);
+            let base = getBase();
+            let converter = Factory.create(base, converterType);
             
             //let converter =  new myConverter(-1);
             //let converter = new Factory(-1);
            
             
-            inputFormat = detectInputFormat(input);
-            if (inputFormat == FORMAT_HEX) {
-                input = removeHexSignature(input);
+        inputFormat = detectInputFormat(input);
+        if (inputFormat == FORMAT_HEX) {
+            input = removeHexSignature(input);
+            if(base == 10){
                 convertedValue = converter.convertToDecimal(input);
                 binaryValue = converter.convertToBinary(input);
-            } else if (inputFormat == FORMAT_DEC) {
+            // }else if(base == 8){
+            //     convertedValue = converter.convertHexToOctal(input);
+            //     binaryValue = converter.convertToBinary(input);
+            // } 
+                } 
+        } else if (inputFormat == FORMAT_DEC) {
+            if(base == 16){
                 convertedValue = converter.convertToHexa(input);
-                binaryValue = converter.convertToBinary(convertedValue);
+                 binaryValue = converter.convertToBinary(convertedValue);
+                // } else if (base == 8){
+                //     convertedValue = converter.convertDecToOctal(input);
+                //     binaryValue = converter.convertToBinary(input);
+                // }
+            } else if (inputFormat == FORMAT_DEC) {
+                if(base == 16){
+                    convertedValue = converter.convertToHexa(input);
+                    binaryValue = converter.convertToBinary(convertedValue);
+                // } else if (base == 8){
+                //     convertedValue = converter.convertDecToOctal(input);
+                //     binaryValue = converter.convertToBinary(input);
+                // }
+                }}
             } else {
                 errorMsg = "Unkown Input Format";
             }
@@ -121,6 +142,13 @@ function convert(input) {
 
 // }
 
+function getBase(){
+    let base;
+    let select = document.getElementById('selectBase');
+    select.addEventListener('change', getBase);
+    base = select.value;
+    return base;
+} 
 
 function getConverterType(){
     let converterType;
