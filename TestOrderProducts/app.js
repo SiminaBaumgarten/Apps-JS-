@@ -19,6 +19,7 @@ function filter(){
             arr[i].style.visibility = "visible";
         }
     }
+    printQty();
 }
 
 function hideSpansRow(e){
@@ -73,6 +74,11 @@ function hideControllersRow(e){
     }
 }
 
+function updateQtyAfterFilter(){
+    let result = 0; 
+    let arr = [];
+    let qtySpan
+}
 
 function updateQty(){
     let result = 0;
@@ -81,9 +87,9 @@ function updateQty(){
     arr = Array.from(qtySpans);
 
     for(let i = 0; i < arr.length; i++){
-        //console.log(arr[i].parentElement.parentElement.style.visibility)
-      
-        result += Number(arr[i].textContent);
+        if(arr[i].parentElement.parentElement.style.visibility == "visible"){
+            result += Number(arr[i].textContent);
+        }
          
     }
     //result = Number(qtySpans[0].textContent) + Number(qtySpans[1].textContent) + Number(qtySpans[2].textContent) + Number(qtySpans[3].textContent) + Number(qtySpans[4].textContent);
