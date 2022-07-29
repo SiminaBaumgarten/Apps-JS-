@@ -5,8 +5,8 @@ import Factory from './converterFactory.js';
 const FORMAT_HEX = 1;
 const FORMAT_DEC = 2;
 
-const inputs = ['#432', 'ZZZ', '0XAF', 'AF', 'AFH', '0x31432', 'AEF', '#34A', 'F', 'K', '10H'];
-//const inputs = ['1323', '4322', '2341', '134', '12', '13', '14', '45654', '3455', '9839', '748789234'];
+//const inputs = ['#432', 'ZZZ', '0XAF', 'AF', 'AFH', '0x31432', 'AEF', '#34A', 'F', 'K', '10H'];
+const inputs = ['1323', '4322', '2341', '134', '12', '13', '14', '45654', '3455', '9839', '748789234'];
 
 
 function removeHexSignature(input) {
@@ -74,34 +74,26 @@ function convert(input) {
             //let converter = new Factory(-1);
            
             
-        inputFormat = detectInputFormat(input);
-        if (inputFormat == FORMAT_HEX) {
-            input = removeHexSignature(input);
-            if(base == 10){
-                convertedValue = converter.convertToDecimal(input);
-                binaryValue = converter.convertToBinary(input);
-            // }else if(base == 8){
-            //     convertedValue = converter.convertHexToOctal(input);
-            //     binaryValue = converter.convertToBinary(input);
-            // } 
+            inputFormat = detectInputFormat(input);
+            if (inputFormat == FORMAT_HEX) {
+                input = removeHexSignature(input);
+                if(base == 10){
+                    convertedValue = converter.convertToDecimal(input);
+                    binaryValue = converter.convertToBinary(input);
+                }else if(base == 8){
+                    binaryValue = converter.convertToBinary(input);
+                    convertedValue = converter.convertHexToOctal(binaryValue);   
                 } 
-        } else if (inputFormat == FORMAT_DEC) {
-            if(base == 16){
-                convertedValue = converter.convertToHexa(input);
-                 binaryValue = converter.convertToBinary(convertedValue);
-                // } else if (base == 8){
-                //     convertedValue = converter.convertDecToOctal(input);
-                //     binaryValue = converter.convertToBinary(input);
-                // }
+                    
             } else if (inputFormat == FORMAT_DEC) {
                 if(base == 16){
                     convertedValue = converter.convertToHexa(input);
                     binaryValue = converter.convertToBinary(convertedValue);
-                // } else if (base == 8){
-                //     convertedValue = converter.convertDecToOctal(input);
-                //     binaryValue = converter.convertToBinary(input);
-                // }
-                }}
+                } else if (base == 8){
+                    binaryValue = converter.convertToBinary(input);
+                    convertedValue = converter.convertDecToOctal(input);
+                } 
+                
             } else {
                 errorMsg = "Unkown Input Format";
             }
