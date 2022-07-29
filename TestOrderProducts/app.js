@@ -74,12 +74,6 @@ function hideControllersRow(e){
     }
 }
 
-function updateQtyAfterFilter(){
-    let result = 0; 
-    let arr = [];
-    let qtySpan
-}
-
 function updateQty(){
     let result = 0;
     let arr = [];
