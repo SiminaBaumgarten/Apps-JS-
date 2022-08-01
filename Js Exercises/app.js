@@ -1,15 +1,5 @@
 const input1 = document.getElementById('input1');
 const input2 = document.getElementById('input2');
-const btn = document.getElementById('btn');
-const concatenationOutput = document.getElementById('concatenationOutput');
-const numOfLettersOutput = document.getElementById('numOfLettersOutput');
-const numOfNumbersOutput = document.getElementById('numOfNumOutput');
-const numOfOtherChrOutput = document.getElementById('numOfOtherChrOutput');
-const sumOutput = document.getElementById('sumOutput');
-const oddConsOutput = document.getElementById('oddConsOutput');
-const intercalationOutput = document.getElementById('intercalationOutput');
-//const commonChrOutput = document.getElementById('commonChrOutput');
-const commonChrInTheSamePositionOutput = document.getElementById('commonChrInTheSamePositionOutput');
 
 function concat() {
     let x = input1.value;
@@ -131,6 +121,15 @@ function clearInputs() {
 }
 
 function calculate() {
+    const concatenationOutput = document.getElementById('concatenationOutput');
+    const numOfLettersOutput = document.getElementById('numOfLettersOutput');
+    const numOfNumbersOutput = document.getElementById('numOfNumOutput');
+    const numOfOtherChrOutput = document.getElementById('numOfOtherChrOutput');
+    const sumOutput = document.getElementById('sumOutput');
+    const oddConsOutput = document.getElementById('oddConsOutput');
+    const intercalationOutput = document.getElementById('intercalationOutput');
+    const commonChrInTheSamePositionOutput = document.getElementById('commonChrInTheSamePositionOutput');
+
     concatenationOutput.innerHTML = concat();
     numOfLettersOutput.innerHTML = countLetters();
     numOfNumbersOutput.innerHTML = countNum();
@@ -143,8 +142,11 @@ function calculate() {
 
     clearInputs();
 }
-localStorage.setItem('name', 'Simina');
-sessionStorage.setItem('name', 'Ella');
 
 
-btn.addEventListener('click', calculate);
+function startApp(){
+    const btn = document.getElementById('btn');
+    btn.addEventListener('click', calculate);
+}
+
+const startPoint = startApp();
