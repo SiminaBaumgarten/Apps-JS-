@@ -6,10 +6,15 @@
         public int Num2 { get; set; }
 
     }
-    
+
     public class ToList
     {
         public string[] ArrayForList { get; set; }
     }
-  
+
+    public class ToArray
+    {
+        public string[] ListForArray { get; set; }
+    }
+
 }

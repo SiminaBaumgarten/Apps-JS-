@@ -1,6 +1,4 @@
-﻿
-
-jQuery('#strConcatBtn').on("click", evaluate);
+﻿jQuery('#strConcatBtn').on("click", evaluate);
     function evaluate(str1, str2) {
         jQuery.ajax({
             url: `FirstExercise/StringsConcat?str1=${jQuery('#input1').val()}&str2=${jQuery('#input2').val()}`,
@@ -61,7 +59,7 @@ jQuery("#toListBtn").on("click", ArrayToList);
 function ArrayToList() {
     let inputValue = jQuery('#input9').val().split(",");
     jQuery.ajax({
-        url: 'FirstExercise/ArrayToList',
+        url: "FirstExercise/ArrayToList",
         type: "POST",
         data: jQuery.param({ arrayForList: inputValue}),
         success: function (response) {
@@ -76,40 +74,34 @@ function ArrayToList() {
     });
 }
 
-////jQuery.ajax({
-////    url: `FirstExerciseController/SumPost?a=${input1.val()}&b=${input2.val()}`,
-////    type: 'POST',
-////    data: jQuery.param({ num1: 1, num2: 2 }),
-////    succes: function (response) {
-////        console.log(response);
-////        jQuery("#test").html(response);
-////    },
-////    error: function () {
-////        alert("error");
-////    }
-////});
+jQuery("#toArrayBtn").on("click", ListToArray);
+function ListToArray() {
+    let inputValue = ["test", "JS", "C#", "AJAX"];
+    jQuery.ajax({
+        url: "FirstExercise/ListToArray",
+        type: "POST",
+        data: jQuery.param({ listForArray: inputValue}),
+        success: function (response) {
+            console.log(response)
+            console.log(inputValue)
+            jQuery("#toArrayResult").html(response);
+        },
+        error: function () {
+            alert("error");
+        }
+    })
+}
 
-//jQuery(document).ready(function () {
-//    jQuery('#strConcatBtn').on("click", function () {
-//        console.log("test")
-//        jQuery.ajax({
-//            url: `FirstExerciseController/StringsConcat?str1=${jQuery('#input1').val()}&str2=${jQuery('#input2').val()}`,
-//            //url: `FirstExerciseController/SumInt?a=${jQuery('#input1').val()}&b=${jQuery('#input2').val()}`,
-//            type: "GET",
-//            succes: function (response) {
-//                console.log(response);
-//                jQuery("#concatResult").val(response);
-//            },
-//            error: function () {
-//                alert("error");
-//            }
-//        });
-
-//    })
-//});
-   
-
-
-
-
-
+jQuery("#boolBtn").on("click", Bool);
+function Bool() {
+    jQuery.ajax({
+        url: `FirstExercise/Bool?a=${jQuery('#input11').val()}`,
+        type: "GET",
+        success: function (response) {
+            jQuery("#boolResult").text(response);
+        },
+        error: function () {
+            alert("error");
+        }
+    });
+}

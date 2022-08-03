@@ -11,25 +11,8 @@ namespace BulkyBookWeb2.Controllers
             return View(new FirstExercise());
         }
 
-        
 
-        //[HttpPost]
-        //public int SumPost(FirstExercise firstExercise)
-        //{
-        //    return firstExercise.Num1 + firstExercise.Num2;
-        //}
 
-        //[HttpPost]
-        //public ActionResult<int> SumInt(FirstExercise am)
-        //{
-        //    return am.Num1 + am.Num2;
-        //}
-
-        //[HttpPost]
-        //public string StringsConcat(FirstExercise firstExercise)
-        //{ 
-        //    return firstExercise.str1 + firstExercise.str2}
-        //}
 
         [HttpGet]
         public string StringsConcat(string str1, string str2)
@@ -57,9 +40,23 @@ namespace BulkyBookWeb2.Controllers
         [HttpPost]
         public List<string> ArrayToList(ToList toList)
         {
-          
+
             List<string> list = toList.ArrayForList.ToList();
             return list;
+        }
+
+
+        [HttpPost]
+        public string[] ListToArray(ToArray toArray)
+        {
+            String[] arr = toArray.ListForArray.ToArray();
+            return arr;
+        }
+
+        [HttpGet]
+        public bool Bool(bool a)
+        {
+            return !a;
         }
 
     }

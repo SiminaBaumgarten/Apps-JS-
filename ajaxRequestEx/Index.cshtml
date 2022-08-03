@@ -1,98 +1,107 @@
 ﻿
-@*@model BulkyBookWeb2.Models.FirstExercise
-
-
-<div class="container m-3 p-3">
-   <label for = "firstString">First text:</label>
-   <input type="text" id="input1" name="firstString"/>
-   <label for = "secondString">Second text:</label>
-   <input type="text" id="input2" name="secondString"/>
-   <input type="button" id="strConcatBtn" value="Evaluate"/>
-   <br /><br />
-   <label for = "concatResult">Concatenation:</label>
-   <input type="text" id="concatResult" name="concatResult" disabled />
-</div>*@
 <h2>Concatenation</h2>
 <form>
-  <div class="mb-3">
-    <label for="exampleInputText" class="form-label" >Input 1:</label>
-    <input type="text" class="form-control" id="input1" aria-describedby="emailHelp">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputText" class="form-label">Input 2:</label>
-    <input type="text" class="form-control" id="input2">
-  </div>
-  <div class="mb-3">
-      <p id="concatResult"></p>
-   </div>
-  <button type="button" class="btn btn-primary" id="strConcatBtn">Submit</button>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input 1:</label>
+        <input type="text" class="form-control" id="input1" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input 2:</label>
+        <input type="text" class="form-control" id="input2">
+    </div>
+    <div class="mb-3">
+        <p id="concatResult"></p>
+    </div>
+    <button type="button" class="btn btn-primary" id="strConcatBtn">Submit</button>
 </form>
 
 <br />
 <h2>Int Sum</h2>
 <form>
-  <div class="mb-3">
-    <label for="exampleInputText" class="form-label" >Input 1:</label>
-    <input type="text" class="form-control" id="input3" aria-describedby="emailHelp">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputText" class="form-label">Input 2:</label>
-    <input type="text" class="form-control" id="input4">
-  </div>
- <div class="mb-3">
-      <p id="sumResult"></p>
- </div>
-  <button type="button" class="btn btn-primary" id="sumBtn">Submit</button>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input 1:</label>
+        <input type="text" class="form-control" id="input3" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input 2:</label>
+        <input type="text" class="form-control" id="input4">
+    </div>
+    <div class="mb-3">
+        <p id="sumResult"></p>
+    </div>
+    <button type="button" class="btn btn-primary" id="sumBtn">Submit</button>
 </form>
 
 
 <br />
 <h2>Float Sum</h2>
 <form>
-  <div class="mb-3">
-    <label for="exampleInputText" class="form-label" >Input 1:</label>
-    <input type="text" class="form-control" id="input5" aria-describedby="emailHelp">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputText" class="form-label">Input 2:</label>
-    <input type="text" class="form-control" id="input6">
-  </div>
- <div class="mb-3">
-      <p id="floatResult"></p>
- </div>
-  <button type="button" class="btn btn-primary" id="floatBtn">Submit</button>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input 1:</label>
+        <input type="text" class="form-control" id="input5" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input 2:</label>
+        <input type="text" class="form-control" id="input6">
+    </div>
+    <div class="mb-3">
+        <p id="floatResult"></p>
+    </div>
+    <button type="button" class="btn btn-primary" id="floatBtn">Submit</button>
 </form>
 
 
 <br />
 <h2>Double Sum</h2>
 <form>
-  <div class="mb-3">
-    <label for="exampleInputText" class="form-label" >Input 1:</label>
-    <input type="text" class="form-control" id="input7" aria-describedby="emailHelp">
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputText" class="form-label">Input 2:</label>
-    <input type="text" class="form-control" id="input8">
-  </div>
- <div class="mb-3">
-      <p id="doubleResult"></p>
- </div>
-  <button type="button" class="btn btn-primary" id="doubleBtn">Submit</button>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input 1:</label>
+        <input type="text" class="form-control" id="input7" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input 2:</label>
+        <input type="text" class="form-control" id="input8">
+    </div>
+    <div class="mb-3">
+        <p id="doubleResult"></p>
+    </div>
+    <button type="button" class="btn btn-primary" id="doubleBtn">Submit</button>
 </form>
 
 
 <br />
 <h2>Array To List</h2>
 <form>
-  <div class="mb-3">
-    <label for="exampleInputText" class="form-label" >Input 1:</label>
-    <input type="text" class="form-control" id="input9" aria-describedby="emailHelp">
-  </div>
- <div class="mb-3">
-      <p id="toListResult"></p>
- </div>
-  <button type="button" class="btn btn-primary" id="toListBtn">Submit</button>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input:</label>
+        <input type="text" class="form-control" id="input9" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <p id="toListResult"></p>
+    </div>
+    <button type="button" class="btn btn-primary" id="toListBtn">Submit</button>
+</form>
+
+<br />
+<h2>List To Array</h2>
+<form>
+    <div class="mb-3">
+        <p id="toArrayResult"></p>
+    </div>
+    <button type="button" class="btn btn-primary" id="toArrayBtn">Submit</button>
+</form>
+
+<br />
+<h2>Boolean</h2>
+<form>
+    <div class="mb-3">
+        <label for="exampleInputText" class="form-label">Input:</label>
+        <input type="text" class="form-control" id="input11" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+        <p id="boolResult"></p>
+    </div>
+    <button type="button" class="btn btn-primary" id="boolBtn">Submit</button>
 </form>
 
 @section Scripts {
