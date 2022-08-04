@@ -30,6 +30,7 @@
         $("tbody").click(function (e) {
             var selectedRow = e.target.closest("tr");
             console.log(selectedRow);
+            console.log(selectedRow.children[1].textContent.trim(" "));
         });
     },
     
