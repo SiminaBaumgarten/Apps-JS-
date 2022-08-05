@@ -1,39 +1,68 @@
 ﻿Slices.PersonMvc = {
     
     init: function () {
-        var me = this;
-        log("init");
-        $.post(Main.fixPath("/MVCTutorial/Convert"),
-            { id: 1 },
-            function (result) {
-                log(result);
-            }        )
+        let me = this;
+        //jQuery.post(Main.fixPath("/MVCTutorial/Convert"),
+        //    { id: 1 },
+        //  function (result) {
+        //       log(result);
+        //   }        )
 
-        //me.testFunction();
-        me.selectedRowFunction();
-        
-
+        me.getSelectedRow();
+       
     },
 
-    //testFunction: function () {
-    //    var me = this;
-    //    me.testFunction2();
-    //    log('testFunction')
-    //},
-    //testFunction2: function () {
 
-    //},
-
-    selectedRowFunction: function () {
+    getSelectedRow: function () {
+        let me = this;
+        let selectedRow = "";
+        jQuery("tbody").on("click", function (e) {
+            selectedRow = e.target.closest("tr");
+            me.getDataFromSelectedRow(selectedRow);
+        })
         
-        var me = this;
-        $("tbody").click(function (e) {
-            var selectedRow = e.target.closest("tr");
-            console.log(selectedRow);
-            console.log(selectedRow.children[1].textContent.trim(" "));
-        });
+        
     },
-    
+
+    getDataFromSelectedRow: function (selectedRow) {
+        let me = this;
+        let idEdit = jQuery("#Id_Edit");
+        idEdit = selectedRow.children[0].children[0].value;
+       
+        const firstNameEdit = jQuery("#First_Name_Edit").val(selectedRow.children[1].textContent.trim(" "));
+        const lastNameEdit = jQuery("#Last_Name_Edit").val(selectedRow.children[2].textContent.trim(" "));
+        const fullNameEdit = jQuery("#Full_Name_Edit").val(selectedRow.children[3].textContent.trim(" "));
+        const ageEdit = jQuery("#Age_Edit").val(selectedRow.children[4].textContent.trim(" "));
+        me.editData(idEdit, firstNameEdit, lastNameEdit, fullNameEdit, ageEdit, selectedRow);
+    },
+
+    editData: function (idEdit, firstNameEdit, lastNameEdit, fullNameEdit, ageEdit, selectedRow) {
+        let me = this;
+        jQuery("#submitEditBtn").click(function (e) {
+            let obj = {
+                Id: idEdit,
+                FirstName: firstNameEdit.val(),
+                LastName: lastNameEdit.val(),
+                //FullName: firstNameEdit.val() + " " + lastNameEdit.val(),
+                FullName: fullNameEdit.val(),
+                Age: ageEdit.val()
+
+            }
 
 
+            jQuery.ajax({
+                url: "MVCTutorial/Edited/",
+                type: "POST",
+                //data: jQuery.param({personModel: obj }),
+                data: obj,
+                success: function (response) {
+
+                    log(response);
+                },
+
+            });
+            e.preventDefault();
+        })
+       
+    },   
 };

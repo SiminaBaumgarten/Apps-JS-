@@ -1,111 +1,111 @@
 ﻿@model IEnumerable<LDB.Web.Models.PersonModel>
 
-<div class="d-flex justify-content-center align-items-center p-5">
-    <table class="table table-striped">
-        <tr>
-            <th>
-                @Html.Hidden("Id")
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirstName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LastName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FullName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
+    <div class="d-flex justify-content-center align-items-center p-5">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.Hidden("Id")
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FullName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
 
-        </tr>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.Hidden("Id")
-                    </td>
+            </tr>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(modelItem => item.Id)
+                        </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FirstName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LastName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Age)
-                    </td>
-                </tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FullName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Age)
+                        </td>
+                    </tr>
 
-            }
-        </tbody>
-    </table>
-</div>
-
-<div class="d-flex justify-content-around" align-items-center p-5">
-    <form id="editForm">
-        <div class="mb-3 d-flex flex-column gap-2" hidden>
-            @Html.Hidden("Id")
-        </div>
-        <div class="mb-3 d-flex flex-column gap-2">
-            @Html.Label("First Name")
-            @Html.TextBox("First Name")
-        </div>
-        <div class="mb-3 d-flex flex-column gap-2">
-            @Html.Label("Last Name")
-            @Html.TextBox("Last Name")
-        </div>
-        <div class="mb-3 d-flex flex-column gap-2">
-            @Html.Label("Full Name")
-            @Html.TextBox("Full Name")
-        </div>
-        <div class="mb-3 d-flex flex-column gap-2">
-            @Html.Label("Age")
-            @Html.TextBox("Age")
-        </div>
-        <button type="submit" class="btn btn-primary">Submit Edit</button>
-    </form>
-
-    <form id="saveForm">
-        <div class="mb-3 d-flex flex-column gap-2" hidden>
-            @Html.Hidden("Id")
-        </div>
-        <div class="mb-3 d-flex flex-column gap-2">
-            @Html.Label("First Name")
-            @Html.TextBox("First Name")
-        </div>
-        <div class="mb-3 d-flex flex-column gap-2">
-            @Html.Label("Last Name")
-            @Html.TextBox("Last Name")
-        </div>
-        <div class="mb-3 d-flex flex-column gap-2">
-            @Html.Label("Full Name")
-            @Html.TextBox("Full Name")
-        </div>
-        <div class="mb-3 d-flex flex-column gap-2">
-            @Html.Label("Age")
-            @Html.TextBox("Age")
-        </div>
-        <button type="submit" class="btn btn-primary">Submit Save</button>
-    </form>
-
-</div>
-
-@section scripts
-{
-    <script type="text/javascript">
-        $(function () {
-            Main.loadResources({
-                url: "Slices/personMvc.js",
-                callback: function () {
-                    Slices.PersonMvc.init();
                 }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-around" align-items-center p-5">
+        <form id="editForm">
+            <div class="mb-3 d-flex flex-column gap-2" hidden>
+                @Html.Hidden("Id_Edit")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("First Name")
+                @Html.TextBox("First_Name_Edit")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Last Name")
+                @Html.TextBox("Last_Name_Edit")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Full Name")
+                @Html.TextBox("Full_Name_Edit")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Age")
+                @Html.TextBox("Age_Edit")
+            </div>
+            <button type="button" class="btn btn-primary" id="submitEditBtn">Submit Edit</button>
+        </form>
+
+        <form id="saveForm">
+            <div class="mb-3 d-flex flex-column gap-2" hidden>
+                @Html.Hidden("Id")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("First Name")
+                @Html.TextBox("First Name")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Last Name")
+                @Html.TextBox("Last Name")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Full Name")
+                @Html.TextBox("Full Name")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Age")
+                @Html.TextBox("Age")
+            </div>
+            <button type="button" class="btn btn-primary">Submit Save</button>
+        </form>
+
+    </div>
+
+    @section scripts
+{
+        <script type="text/javascript">
+            $(function () {
+                Main.loadResources({
+                    url: "Slices/personMvc.js",
+                    callback: function () {
+                        Slices.PersonMvc.init();
+                    }
+                });
             });
-        });
-    </script>
-}
+        </script>
+    }
