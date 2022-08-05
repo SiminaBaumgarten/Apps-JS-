@@ -2,12 +2,6 @@
     
     init: function () {
         let me = this;
-        //jQuery.post(Main.fixPath("/MVCTutorial/Convert"),
-        //    { id: 1 },
-        //  function (result) {
-        //       log(result);
-        //   }        )
-
         me.getSelectedRow();
        
     },
@@ -57,7 +51,12 @@
                 data: obj,
                 success: function (response) {
 
-                    log(response);
+               
+                    selectedRow.children[1].innerText = response.FirstName;
+                    selectedRow.children[2].innerText = response.LastName;
+                    selectedRow.children[3].innerText = response.FullName;
+                    selectedRow.children[4].innerText = response.Age;
+                   
                 },
 
             });
