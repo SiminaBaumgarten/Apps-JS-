@@ -73,23 +73,23 @@
 
         <form id="saveForm">
             <div class="mb-3 d-flex flex-column gap-2" hidden>
-                @Html.Hidden("Id")
+                @Html.Hidden("Id_Save")
             </div>
             <div class="mb-3 d-flex flex-column gap-2">
                 @Html.Label("First Name")
-                @Html.TextBox("First Name")
+                @Html.TextBox("First_Name_Save")
             </div>
             <div class="mb-3 d-flex flex-column gap-2">
                 @Html.Label("Last Name")
-                @Html.TextBox("Last Name")
+                @Html.TextBox("Last_Name_Save")
             </div>
             <div class="mb-3 d-flex flex-column gap-2">
                 @Html.Label("Full Name")
-                @Html.TextBox("Full Name")
+                @Html.TextBox("Full_Name_Save")
             </div>
             <div class="mb-3 d-flex flex-column gap-2">
                 @Html.Label("Age")
-                @Html.TextBox("Age")
+                @Html.TextBox("Age_Save")
             </div>
             <button type="button" class="btn btn-primary">Submit Save</button>
         </form>
