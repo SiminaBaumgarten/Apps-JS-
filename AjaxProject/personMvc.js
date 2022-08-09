@@ -2,8 +2,14 @@
     
     init: function () {
         let me = this;
+        //jQuery.post(Main.fixPath("/MVCTutorial/Convert"),
+        //    { id: 1 },
+        //  function (result) {
+        //       log(result);
+        //   }        )
+
         me.getSelectedRow();
-       
+        me.saveData();
     },
 
 
@@ -12,10 +18,10 @@
         let selectedRow = "";
         jQuery("tbody").on("click", function (e) {
             selectedRow = e.target.closest("tr");
+            //selectedRow.css("background-color", "blue");
             me.getDataFromSelectedRow(selectedRow);
         })
-        
-        
+         
     },
 
     getDataFromSelectedRow: function (selectedRow) {
@@ -37,10 +43,8 @@
                 Id: idEdit,
                 FirstName: firstNameEdit.val(),
                 LastName: lastNameEdit.val(),
-                //FullName: firstNameEdit.val() + " " + lastNameEdit.val(),
                 FullName: fullNameEdit.val(),
                 Age: ageEdit.val()
-
             }
 
 
@@ -50,8 +54,7 @@
                 //data: jQuery.param({personModel: obj }),
                 data: obj,
                 success: function (response) {
-
-               
+                    log(selectedRow);
                     selectedRow.children[1].innerText = response.FirstName;
                     selectedRow.children[2].innerText = response.LastName;
                     selectedRow.children[3].innerText = response.FullName;
@@ -59,9 +62,32 @@
                    
                 },
 
+
             });
             e.preventDefault();
         })
-       
-    },   
+    },
+    saveData: function (idSave, firstNameSave, lastNameSave, fullNameSave, ageSave) {
+        let me = this;
+        jQuery("#submitSaveBtn").click(function (e) {
+            e.preventDefault(e);
+            let formData = {
+                //Id: $("#"),
+                FirstName: jQuery("#First_Name_Save").val(),
+                LastName: jQuery("#Last_Name_Save").val(),
+                FullName: jQuery("#Full_Name_Save").val(),
+                Age: jQuery("#Age_Save").val(),
+            };
+            jQuery.ajax({
+                url: "MVCTutorial/Edited/",
+                type: "POST",
+                data: formData,
+                success: function (response) {
+                    log(formData);
+                },
+            })
+
+        })
+    }
+    
 };
