@@ -1,4 +1,6 @@
-﻿Slices.PersonMvc = {
+﻿//const { htmlPrefilter } = require("jquery");
+
+Slices.PersonMvc = {
     
     init: function () {
         let me = this;
@@ -69,7 +71,7 @@
     },
     saveData: function (idSave, firstNameSave, lastNameSave, fullNameSave, ageSave) {
         let me = this;
-        jQuery("#submitSaveBtn").click(function (e) {
+        jQuery("#submitSaveBtn").on("click", function (e) {
             e.preventDefault(e);
             let formData = {
                 //Id: $("#"),
@@ -83,7 +85,23 @@
                 type: "POST",
                 data: formData,
                 success: function (response) {
-                    log(formData);
+                    let tBody = jQuery("tbody");
+                    let txt;
+                    
+                    tBody.innerText = txt;
+                        txt = `
+                        <tr>
+                           
+                            <td></td>
+                            <td>${response.FirstName}</td>
+                            <td>${response.LastName}</td>
+                            <td>${response.FullName}</td>
+                            <td>${response.Age}</td>
+                        </tr>
+                    `;
+                    
+                    tBody.last().append(txt);
+                   
                 },
             })
 
