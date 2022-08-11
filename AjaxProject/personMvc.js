@@ -1,14 +1,8 @@
-﻿//const { htmlPrefilter } = require("jquery");
-
+﻿
 Slices.PersonMvc = {
-    
+
     init: function () {
         let me = this;
-        //jQuery.post(Main.fixPath("/MVCTutorial/Convert"),
-        //    { id: 1 },
-        //  function (result) {
-        //       log(result);
-        //   }        )
 
         me.getSelectedRow();
         me.saveData();
@@ -20,17 +14,16 @@ Slices.PersonMvc = {
         let selectedRow = "";
         jQuery("tbody").on("click", function (e) {
             selectedRow = e.target.closest("tr");
-            //selectedRow.css("background-color", "blue");
             me.getDataFromSelectedRow(selectedRow);
         })
-         
+
     },
 
     getDataFromSelectedRow: function (selectedRow) {
         let me = this;
         let idEdit = jQuery("#Id_Edit");
         idEdit = selectedRow.children[0].children[0].value;
-       
+
         const firstNameEdit = jQuery("#First_Name_Edit").val(selectedRow.children[1].textContent.trim(" "));
         const lastNameEdit = jQuery("#Last_Name_Edit").val(selectedRow.children[2].textContent.trim(" "));
         const fullNameEdit = jQuery("#Full_Name_Edit").val(selectedRow.children[3].textContent.trim(" "));
@@ -53,7 +46,6 @@ Slices.PersonMvc = {
             jQuery.ajax({
                 url: "MVCTutorial/Edited/",
                 type: "POST",
-                //data: jQuery.param({personModel: obj }),
                 data: obj,
                 success: function (response) {
                     log(selectedRow);
@@ -61,7 +53,7 @@ Slices.PersonMvc = {
                     selectedRow.children[2].innerText = response.LastName;
                     selectedRow.children[3].innerText = response.FullName;
                     selectedRow.children[4].innerText = response.Age;
-                   
+
                 },
 
 
@@ -74,7 +66,6 @@ Slices.PersonMvc = {
         jQuery("#submitSaveBtn").on("click", function (e) {
             e.preventDefault(e);
             let formData = {
-                //Id: $("#"),
                 FirstName: jQuery("#First_Name_Save").val(),
                 LastName: jQuery("#Last_Name_Save").val(),
                 FullName: jQuery("#Full_Name_Save").val(),
@@ -86,10 +77,7 @@ Slices.PersonMvc = {
                 data: formData,
                 success: function (response) {
                     let tBody = jQuery("tbody");
-                    let txt;
-                    
-                    tBody.innerText = txt;
-                        txt = `
+                    let txt = `
                         <tr>
                            
                             <td></td>
@@ -101,11 +89,11 @@ Slices.PersonMvc = {
                     `;
                     
                     tBody.last().append(txt);
-                   
+
                 },
             })
 
         })
     }
-    
+
 };
