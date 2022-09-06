@@ -117,7 +117,7 @@ Slices.PersonMvc = {
                 type: "DELETE",
                 data: obj,
                 success: function (response) {
-                    obj.Id.remove();
+                    selectedRow.remove();
                 }
             })
         })

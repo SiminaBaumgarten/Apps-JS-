@@ -20,4 +20,6 @@ namespace LDB.Web.Models
         public int Age { get; set; }
         //public DateTime DateOfBirth { get; set; }
     }
+
+    
 }
