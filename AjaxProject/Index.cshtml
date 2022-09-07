@@ -1,6 +1,119 @@
+﻿<<<<<<< Updated upstream
 ﻿
-<div class="h-100 text-center d-flex justify-content-center align-items-center">
-    <h2>
-        Hello, I am MVCTutorial View's Index(parent) Page
-    </h2>
+@model IEnumerable<LDB.Web.Models.PersonModel>
+
+<div class="flex-column d-flex justify-content-center align-items-center p-5">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.Hidden("Id")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BirthDate)
+            </th>
+
+        </tr>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.HiddenFor(modelItem => item.Id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+            </tr>
+
+            }
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-end align-self-baseline ps-4">
+        <button type="button" class="btn btn-primary" id="deleteBtn">Delete</button>
+    </div>
 </div>
+
+    
+    <div class="d-flex justify-content-around" align-items-center p-5>
+        <form id="editForm">
+            <div class="mb-3 d-flex flex-column gap-2" hidden>
+                @Html.Hidden("Id_Edit")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("First Name")
+                @Html.TextBox("First_Name_Edit")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Last Name")
+                @Html.TextBox("Last_Name_Edit")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Full Name")
+                @Html.TextBox("Full_Name_Edit")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Age")
+                @Html.TextBox("Age_Edit")
+            </div>
+            <button type="button" class="btn btn-primary" id="submitEditBtn">Submit Edit</button>
+
+        </form>
+
+        <form id="saveForm">
+            <div class="mb-3 d-flex flex-column gap-2" hidden>
+                @Html.Hidden("Id_Save")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("First Name")
+                @Html.TextBox("First_Name_Save")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Last Name")
+                @Html.TextBox("Last_Name_Save")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Full Name")
+                @Html.TextBox("Full_Name_Save")
+            </div>
+            <div class="mb-3 d-flex flex-column gap-2">
+                @Html.Label("Age")
+                @Html.TextBox("Age_Save")
+            </div>
+            <button type="button" class="btn btn-primary" id="submitSaveBtn">Submit Save</button>
+        </form>
+
+    </div>
+
+    @section scripts
+{
+        <script type="text/javascript">
+            $(function () {
+                Main.loadResources({
+                    url: "Slices/personMvc.js",
+                    callback: function () {
+                        Slices.PersonMvc.init();
+                    }
+                });
+            });
+        </script>
+    }
+
