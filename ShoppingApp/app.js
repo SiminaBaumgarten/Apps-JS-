@@ -63,15 +63,15 @@ function populate(s1, s2){
     s2.innerHTML = "";
     //var optionArrayDefault = ["-select-|-select-"];
     if(s1.value == 'fruits'){
-        var optionArray = ["-select-|-select-", "Apples | Apples", "Bananas | Bananas", "Oranges | Oranges"];
+        let optionArray = ["-select-|-select-", "Apples | Apples", "Bananas | Bananas", "Oranges | Oranges"];
     } else if (s1.value == "vegetables"){
-        var optionArray = ["-select-|-select-", "Carrots | Carrots", "Onions | Onions", "Potatoes | Potatoes", "Tomatoes | Tomatoes"];
+        let optionArray = ["-select-|-select-", "Carrots | Carrots", "Onions | Onions", "Potatoes | Potatoes", "Tomatoes | Tomatoes"];
     } else if(s1.value == "others"){
-        var optionArray = ["-select-|-select-", "Rice | Rice", "Pasta | Pasta", "Milk | Milk"]
+        let optionArray = ["-select-|-select-", "Rice | Rice", "Pasta | Pasta", "Milk | Milk"]
     }
-    for(var option in optionArray){
-        var pair = optionArray[option].split("|");
-        var newOption = document.createElement('option');
+    for(let option in optionArray){
+        let pair = optionArray[option].split("|");
+        let newOption = document.createElement('option');
         newOption.value = pair[0];
         newOption.innerHTML = pair[1];
         s2.options.add(newOption);
